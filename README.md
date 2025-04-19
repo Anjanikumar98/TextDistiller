@@ -42,11 +42,6 @@ TextDistiller leverages the `T5-small` pretrained model from HuggingFace Transfo
 ## Contributing
 
 We welcome contributions from the community! If you'd like to contribute to TextDistiller, please feel free to submit a pull request or open an issue. Your feedback and support are greatly appreciated!
-
-## License
-
-TextDistiller is distributed under the [MIT License](https://github.com/johngai19/TextDistiller/blob/master/LICENSE).
-
 ---
 
-*Maintained by [John Ngai](https://github.com/johngai19)*
+*Maintained by [Anjanikumar Choubey](https://github.com/Anjanikumar98)*

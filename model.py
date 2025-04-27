@@ -1,3 +1,4 @@
+import torch
 from imports import *
 from mail import *
 
@@ -9,7 +10,6 @@ try:
 except LookupError:
     nltk.download('punkt')
 
-
 def cleanText(text):
     text = re.sub(r"@[A-Za-z0-9]+", ' ', text)
     text = re.sub(r"https?://[A-Za-z0-9./]+", ' ', text)
@@ -18,22 +18,20 @@ def cleanText(text):
     text = re.sub(r" +", ' ', text)
     return text
 
-
 def getSummary(text, tokenizer):
     preprocess_text = text.strip().replace("\n", "")
     t5_prepared_Text = "summarize: " + preprocess_text
     tokenized_text = tokenizer.encode(t5_prepared_Text, return_tensors="pt").to(device)
 
     summary_ids = model.generate(tokenized_text,
-                                 num_beams=5,
-                                 no_repeat_ngram_size=2,
-                                 min_length=30,
-                                 max_length=96,
-                                 early_stopping=True)
+                                num_beams=5,
+                                no_repeat_ngram_size=2,
+                                min_length=30,
+                                max_length=96,
+                                early_stopping=True)
 
     output = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
     return output
-
 
 def sentenceCorrection(text):
     correctedText = ""
@@ -45,7 +43,6 @@ def sentenceCorrection(text):
         correctedText += sentence
 
     return correctedText
-
 
 def summaryGeneration(mailid=None):
     try:
@@ -118,7 +115,6 @@ def summaryGeneration(mailid=None):
     except Exception as e:
         print(e)
         send_fail(mailid)
-
 
 def makezipAndCleanUp(mailid=None):
     # function to compress all summary text files into single zip file
